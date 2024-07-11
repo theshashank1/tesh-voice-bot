@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Bot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <div class="container d-flex flex-column justify-content-between align-items-center vh-100 py-4">
+        <div class="bot-image"></div>
+        <div class="card text-center shadow p-3 mb-3 w-100" style="max-width: 400px;">
+            <div class="card-body">
+                <h5 class="card-title">Hi {{ user.title }}!</h5>
+                <p class="card-text message">How can I help you?</p>
+                <button id="startButton" class="btn btn-grad mic-button" onclick="startVoiceRecognition()">
+                    <i class="material-icons">mic_none</i>
+                    <span>Tap to Speak!</span>
+                </button>
+                <button class="btn btn-grad cancel-button" onclick="cancelVoiceRecognition()">
+                    <i class="material-icons">cancel</i>
+                    <span>Cancel</span>
+                </button>
+                <p class="status-message text-danger mt-3"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

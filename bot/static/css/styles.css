@@ -1,0 +1,98 @@
+body {
+    background: repeating-linear-gradient(155deg, #c3ebff, #ffd6e7, #c3ebff);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container {
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.card {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 300px; /* adjusted max-width for 344x882 screen */
+    padding: 18px;
+}
+
+.bot-image {
+    background: url('../images/bot.png') no-repeat center center;
+    background-size: contain;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: -20px;
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.btn-grad {
+    background-image: linear-gradient(135deg, #c3ebff, #ffd6e7);
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-grad:hover {
+    background-image: linear-gradient(135deg, #a045ff, #ffd6e7, #c3ebff, #a045ff);
+    color: #333;
+}
+
+.mic-button {
+    padding: 10px 15px;
+}
+
+.mic-button .material-icons {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.cancel-button {
+    padding: 10px 15px;
+}
+
+.cancel-button .material-icons {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.status-message {
+    font-size: 12px;
+}
+
+/* Additional styles for 344x882 screen */
+
+@media (max-width: 344px) and (max-height: 882px) {
+    .card {
+        padding: 15px;
+    }
+    .bot-image {
+        height: 120px;
+        width: 120px;
+        margin-bottom: -15px;
+    }
+    .btn-grad {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    .mic-button .material-icons, .cancel-button .material-icons {
+        font-size: 16px;
+    }
+}
+

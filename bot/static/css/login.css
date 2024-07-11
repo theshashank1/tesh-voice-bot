@@ -1,0 +1,41 @@
+body {
+    background: repeating-linear-gradient(155deg, #c3ebff, #ffd6e7, #c3ebff);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.card {
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px; /* adjusted max-width for 344x882 screen */
+    padding: 18px;
+}
+
+
+.input-field {
+    margin-top: 20px;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 20px;
+    background-image: linear-gradient(135deg, #c3ebff, #ffd6e7);
+    color: #333333;
+    cursor: pointer;
+    font-size: 13px;
+
+}
+
+.error-message {
+    color: indianred;
+    font-size: 12px;
+    margin-top: 10px;
+}
