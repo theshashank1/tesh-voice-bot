@@ -1,44 +1,45 @@
 import json
 
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.llms import Ollama
 from langchain_core.output_parsers import StrOutputParser
+import langsmith
 
 # Initialize your LLM and other necessary components
-llm = Ollama(model="gemma:2b")
+llm = Ollama(model="gemma:2b")  # Replace with the correct Gemini model
 
 # General purpose prompt template
 prompt_template = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant."),
+    ("system", "You are a helpful assistant, your name is TESH"),
     ("user", "{input}")
 ])
 
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-@csrf_exempt  # Disable CSRF (Cross-Site Request Forgery) protection for this view
-def process(request) :
-    if request.method == 'POST' :
-        try :
-            # Assuming you're sending data as JSON in the request body
-            data = json.loads(request.body)
-            user_input = data.get('text', '')  # Adjust according to your JSON structure
 
-            # Assuming prompt_template and llm are defined elsewhere in your code
-            prompt_template = "User input: {input}"
-            # Example llm function call
-            response = llm(prompt_template.format(input=user_input))
 
-            # Assuming StrOutputParser is a class or function to parse the response
-            parsed_output = StrOutputParser().parse(response)
 
-            return JsonResponse({'response' : parsed_output})
+def remove_chars(text):
+  """Removes * and # characters from the given text.
 
-        except json.JSONDecodeError :
-            return JsonResponse({'error' : 'Invalid JSON format in request body'}, status=400)
+  Args:
+    text: The input text.
 
-        except Exception as e :
-            return JsonResponse({'error' : str(e)}, status=500)
+  Returns:
+    The cleaned text.
+  """
 
-    return JsonResponse({'error' : 'Method not allowed'}, status=405)
+  cleaned_text = text.replace('*', '').replace('#', '')
+  return cleaned_text
 
+
+@langsmith.traceable
+def process_handler(data):
+    prompt_template.invoke(input = data)
+    parser = StrOutputParser()
+    chain = prompt_template | llm | parser | remove_chars
+
+    return chain.invoke(data)
+
+if __name__ == "__main__":
+    print(process_handler("What is your name?"))
