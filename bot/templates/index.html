@@ -18,7 +18,7 @@
         <div class="bot-image"></div>
         <div class="card text-center shadow p-3 mb-3 w-100" style="max-width: 400px;">
             <div class="card-body">
-                <h5 class="card-title">Hi {{ user.title }}!</h5>
+                <h5 class="card-title">Hi {{ user.username|title }}!</h5>
                 <p class="card-text message">How can I help you?</p>
                 <button id="startButton" class="btn btn-grad mic-button" onclick="startVoiceRecognition()">
                     <i class="material-icons">mic_none</i>

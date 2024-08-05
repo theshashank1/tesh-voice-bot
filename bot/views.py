@@ -5,16 +5,15 @@ from django.shortcuts import render, redirect
 from django.http import FileResponse
 from django.urls import reverse
 
-
-
-
-
+from api.services.jwt_service import decode_jwt
 def index(request):
     if request.method == 'GET':
         user_cookie = request.COOKIES.get('user')
+        print(decode_jwt(user_cookie))
+        print(type(decode_jwt(user_cookie)))
 
         if user_cookie:
-            user = json.loads(user_cookie).get('username')
+            user = decode_jwt(user_cookie)
             return render(request, 'index.html', {'user' : user})
 
         return redirect(reverse('bot:login'))

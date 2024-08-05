@@ -1,1 +1,6 @@
-This is shashank
+langchain
+langchain-core
+langchain-community
+
+
+python-dotenv
