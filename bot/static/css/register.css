@@ -9,8 +9,6 @@ body {
     align-items: center;
 }
 
-
-
 .card {
     margin-top: 20px;
     border-radius: 3px;
@@ -19,19 +17,17 @@ body {
     padding: 18px;
 }
 
-
 .input-field {
     margin-top: 20px;
 }
 
-.btn {
+.btn-register {
     width: 100%;
     margin-top: 20px;
     background-image: linear-gradient(135deg, #c3ebff, #ffd6e7);
     color: #333333;
     cursor: pointer;
     font-size: 13px;
-
 }
 
 .error-message {

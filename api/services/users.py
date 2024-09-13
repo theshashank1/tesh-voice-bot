@@ -14,7 +14,7 @@ def auth_login(username, password) :
     except UserModel.DoesNotExist :
         return 'Invalid username'
 
-    if not user.check_password(password) :
+    if not user.check_password(password):
         return 'Invalid password'
 
     # user_json = serializers.serialize('json', user)

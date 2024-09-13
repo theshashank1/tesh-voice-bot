@@ -9,14 +9,13 @@ from api.services.jwt_service import decode_jwt
 def index(request):
     if request.method == 'GET':
         user_cookie = request.COOKIES.get('user')
-        print(decode_jwt(user_cookie))
-        print(type(decode_jwt(user_cookie)))
 
         if user_cookie:
             user = decode_jwt(user_cookie)
             return render(request, 'index.html', {'user' : user})
 
         return redirect(reverse('bot:login'))
+
 
 
 def about(request):
@@ -28,3 +27,7 @@ def about(request):
 def login(request) :
     if request.method == 'GET' :
         return render(request, 'login.html')
+
+def register(request):
+    if request.method == 'GET' :
+        return render(request, 'register.html')

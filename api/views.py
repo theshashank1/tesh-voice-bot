@@ -1,13 +1,14 @@
 import json
 
-from django.http import JsonResponse, request, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import get_user_model
 
-from .controller.users import auth_login
+
 from .controller.bot import process_handler
 
-from .services import jwt_service
+from .services import jwt_service, users
 
 
 @csrf_exempt  # Disable CSRF (Cross-Site Request Forgery) protection for this view
@@ -36,7 +37,7 @@ def login(request) :
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        message, user_data = auth_login(username, password)
+        message, user_data = users.auth_login(username, password)
 
         if message == 'Logged in successfully':
             res = HttpResponseRedirect(reverse('bot:index'))
@@ -50,3 +51,22 @@ def login(request) :
         return JsonResponse({'Message' : message}, status=401)
 
     return JsonResponse({'Message' : 'Method not allowed'}, status=405)
+
+
+def register(request) :
+    if request.method == 'POST' :
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        last_name = request.POST.get('last_name')
+        first_name = request.POST.get('first_name')
+
+        UserModel = get_user_model()
+
+        user = UserModel.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
+        user.save()
+
+        return HttpResponseRedirect(reverse('bot:login'))
+
+
+
