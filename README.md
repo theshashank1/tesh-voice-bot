@@ -94,7 +94,7 @@ You may configure various aspects of the bot by modifying the configuration file
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/theshashank1/tesh-voice-bot?tab=MIT-1-ov-file) file for details.
 
 ## Contact
 
