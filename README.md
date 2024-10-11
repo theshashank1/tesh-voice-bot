@@ -98,7 +98,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## Contact
 
-For any questions or support, please reach out to [shashankgundas1@gmail.com](mailto:shashankgundas1@gmail.com).
+For any questions or support, please contact [shashankgundas1@gmail.com](mailto:shashankgundas1@gmail.com).
 
 ---
 
