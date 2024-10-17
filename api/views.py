@@ -6,20 +6,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 
 
-from .controller.bot import process_handler
+from .controller.bot import process_with_gemini
 
 from .services import jwt_service, users
 
 
 @csrf_exempt  # Disable CSRF (Cross-Site Request Forgery) protection for this view
 def process(request) :
-    if request.method == 'POST' :
+    if request.method == 'POST':
         try :
             # Assuming you're sending data as JSON in the request body
             data = json.loads(request.body)
             user_input = data.get('text', '')  # Adjust according to your JSON structure
 
-            parsed_output = process_handler(user_input)
+            # parsed_output = process_handler(user_input)
+            parsed_output = process_with_gemini(user_input)
 
             return JsonResponse({'response' : parsed_output})
 

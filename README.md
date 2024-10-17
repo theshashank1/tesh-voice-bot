@@ -1,9 +1,4 @@
-
----
-
 # TESH Voice Bot
-
----
 
 ## Overview
 
@@ -15,6 +10,7 @@ TESH is an advanced conversational voice bot developed using the Gemma model wit
 - **Contextual Understanding**: Provides context-aware responses using the Gemma model.
 - **Local Deployment**: Deployed locally using Ollama for enhanced performance and privacy.
 - **Speech Recognition**: Utilizes web speech recognition for accurate voice input handling.
+- **Domain Access**: The bot can be accessed via the public domain `https://tesh.loca.lt`, allowing for easy remote access during development.
 
 ## Installation
 
@@ -49,20 +45,23 @@ TESH is an advanced conversational voice bot developed using the Gemma model wit
 
 6. **Run the Bot:**
 
+   Use the provided `run.sh` script to start both the Django server and the LocalTunnel instance:
+
    ```bash
-   python main.py
+   ./run.sh
    ```
 
-   The bot should now be up and running on your local machine.
+   The bot will be accessible locally, and the LocalTunnel will generate a public URL (`https://tesh.loca.lt`) that you can use to access the bot remotely.
 
 ## Usage
 
-- **Start Interaction**: Launch the bot using the command above, and it will start listening for voice inputs.
-- **Voice Commands**: Speak naturally and the bot will process and respond based on the given context.
+- **Start Interaction**: Once the bot is running, it will start listening for voice inputs.
+- **Remote Access**: The bot is accessible via the `https://tesh.loca.lt` domain, allowing for remote interaction.
+- **Voice Commands**: Speak naturally, and the bot will process and respond based on the given context.
 
 ## Configuration
 
-You may configure various aspects of the bot by modifying the configuration files located in the `config/` directory.
+You may configure various aspects of the bot by modifying the configuration files located in the `config/` directory:
 
 - `config/settings.yml`: Adjust model parameters and other settings.
 - `config/ollama_config.json`: Configure Ollama deployment settings.
@@ -99,7 +98,3 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## Contact
 
 For any questions or support, please reach out to [shashankgundas1@gmail.com](mailto:shashankgundas1@gmail.com).
-
----
-
-This version includes a section on installing and configuring Ollama. Let me know if there are any other details you'd like to add!
