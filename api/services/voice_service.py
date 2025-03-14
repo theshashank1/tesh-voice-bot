@@ -1,8 +1,7 @@
 import speech_recognition as sr
 import logging
-from pathlib import Path
-import tempfile
 import os
+import tempfile
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +12,7 @@ class VoiceService :
         self.bot_service = bot_service
 
     def recognize_speech(self, audio_file) :
-        """Convert speech to text with improved error handling"""
+        """Convert speech to text with robust error handling"""
         temp_path = None
         try :
             # Save the audio file to a temporary file
@@ -22,7 +21,7 @@ class VoiceService :
                     temp_audio.write(chunk)
                 temp_path = temp_audio.name
 
-            # Use the speech recognition library
+            # Use the speech recognition library with improved error handling
             with sr.AudioFile(temp_path) as source :
                 audio_data = self.recognizer.record(source)
                 text = self.recognizer.recognize_google(audio_data)
@@ -31,20 +30,20 @@ class VoiceService :
 
         except sr.UnknownValueError :
             logger.warning("Speech recognition could not understand audio")
-            return {"success" : False, "error" : "Could not understand audio"}
+            return {"success" : False, "error" : "Could not understand audio. Please try again."}
 
         except sr.RequestError as e :
             logger.error(f"Speech recognition service error: {e}")
-            return {"success" : False, "error" : f"Speech service error: {e}"}
+            return {"success" : False, "error" : "Speech service unavailable. Please try again later."}
 
         except Exception as e :
             logger.error(f"Unexpected error in speech recognition: {e}")
-            return {"success" : False, "error" : "Failed to process audio"}
-        finally :
-            # Clean up temp file
-            if temp_path and os.path.exists(temp_path) :
-                os.unlink(temp_path)
+            return {"success" : False, "error" : "Something went wrong. Please try again."}
 
-    def generate_response(self, text) :
-        """Generate bot response from text input"""
-        return self.bot_service.process_message(text)
+        finally :
+            # Clean up temp file to prevent memory leaks
+            if temp_path and os.path.exists(temp_path) :
+                try :
+                    os.unlink(temp_path)
+                except Exception as e :
+                    logger.warning(f"Failed to delete temporary file: {e}")
